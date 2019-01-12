@@ -6,11 +6,34 @@ public class Car {
     private final SimpleStringProperty licensenumber;
     private final SimpleStringProperty make;
     private final SimpleStringProperty color;
+    public static final long serialVersionUID = 11L;
 
     public Car(String licensenumber, String make, String color) {
         this.licensenumber = new SimpleStringProperty(licensenumber);
         this.make = new SimpleStringProperty(make);
         this.color = new SimpleStringProperty(color);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Car obj2 = (Car) obj;
+        return getLicensenumber().equals(obj2.getLicensenumber());
+    }
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(getLicensenumber());
+    }
+    @Override
+    public String toString() {
+        return "licensenumber: "+getLicensenumber()+"\n"+
+               "make: "+getMake()+"\n"+
+               "color: "+getColor();
     }
 
     // Getters & Setters
